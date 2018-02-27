@@ -11,15 +11,18 @@
 		</h1>
 	</header>
 	<body>
-		<div>
+		<div style="float: right; width: 70%;"> 
 			<canvas id="earth"></canvas>
+		</div>
+		<div class="menu" style="float: left; width: 30%;">
+			Menu
 		</div>
 		<script src="three.js"></script>
 		<script>
 			var renderer = new THREE.WebGLRenderer({canvas: document.getElementById('earth'), antialias: true});
 			renderer.setClearColor(0x000000);
 			renderer.setPixelRatio(window.devicePixelRatio);
-			renderer.setSize(window.innerWidth, window.innerHeight);
+			renderer.setSize(window.innerWidth*(6.5/10), window.innerHeight*(8/10));
 			var camera = new THREE.PerspectiveCamera(35,window.innerWidth / window.innerHeight, 0.1, 3000);
 			var scene = new THREE.Scene();
 
@@ -29,8 +32,8 @@
 			var light2 = new THREE.PointLight(0xffffff, 0.5)
 			scene.add(light2)
 
-			var geometry = new THREE.CubeGeometry(100,100,100)
-			var material = new THREE.MeshLambertMaterial();
+			var geometry = new THREE.SphereGeometry(100, 15, 15)
+			var material = new THREE.MeshLambertMaterial({ color: 0xff0000});
 			var mesh = new THREE.Mesh(geometry, material)
 			mesh.position.set(0,0,-500)
 
@@ -48,7 +51,3 @@
 		</script>
 	</body>
 </html>
-=======
-<HEAD>
-	Archangel
-</HEAD>
