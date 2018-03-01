@@ -4,3 +4,8 @@ Meeting 1:
 - We decided to go with an interactive map of the worlds polution
 - We chose a time for our next meeting
 - Finally, we finished the Milestone 1
+
+Meeting 2:
+- We discused what management tool we are going to use and we decided on Google docs
+- We started planning all of the different sprints that we want to do and what features those will entail.
+- We began working on milestone 2

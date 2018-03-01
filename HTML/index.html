@@ -3,26 +3,14 @@
 	<head>
 		<title>Archangel</title>
 	</head>
-	<header>
-		<h1 class="title">
-			<center>
-				Arch Angel
-			</center>
-		</h1>
-	</header>
 	<body>
-		<div style="float: right; width: 70%;"> 
-			<canvas id="earth"></canvas>
-		</div>
-		<div class="menu" style="float: left; width: 30%;">
-			Menu
-		</div>
+		<canvas id="earth" style="margin: 0px;"></canvas>
 		<script src="../ThreeJS/three.js"></script>
 		<script>
 			var renderer = new THREE.WebGLRenderer({canvas: document.getElementById('earth'), antialias: true});
 			renderer.setClearColor(0x000000);
 			renderer.setPixelRatio(window.devicePixelRatio);
-			renderer.setSize(window.innerWidth*(6.5/10), window.innerHeight*(8/10));
+			renderer.setSize(window.innerWidth/(1), window.innerHeight/(1));
 			var camera = new THREE.PerspectiveCamera(35,window.innerWidth / window.innerHeight, 0.1, 3000);
 			var scene = new THREE.Scene();
 
@@ -40,6 +28,13 @@
 			scene.add(mesh)
 
 			requestAnimationFrame(render)
+
+			// window.addEventListener( 'resize', onWindowResize, false );
+
+			// function onWindowResize() {
+			// 	camera.aspect = window.innerWidth / window.innerHeight;
+			// 	camera.updateProjectionMatrix();
+			// 	renderer.setSize( window.innerWidth, window.innerHeight );
 
 			function render() {
 				mesh.rotation.x += 0.03;
