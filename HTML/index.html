@@ -1,46 +1,64 @@
 <!DOCTYPE html>
-<html>
+<html style="margin: 0px;">  
 	<head>
 		<title>Archangel</title>
 	</head>
-	<body>
-		<canvas id="earth" style="margin: 0px;"></canvas>
+	<header style="color: red; position: absolute; width: 100%; font: helvetica;">
+		<center>
+			<h1 ng-click="home()">
+				Archangel
+			</h1>
+		</center>
+	</header>
+	<div class="menu" style="width: 10%; position: absolute; color: red; float: left; border: solid; margin: 10px;" ng-click="">
+		<center>
+			Menu
+		</center>
+	</div>
+	<body style="margin: 0px; height: 100%; width: 100%;">
+		<canvas id="earth" style="margin: 0px; display: block;"></canvas>
 		<script src="../ThreeJS/three.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 		<script>
-			var renderer = new THREE.WebGLRenderer({canvas: document.getElementById('earth'), antialias: true});
-			renderer.setClearColor(0x000000);
-			renderer.setPixelRatio(window.devicePixelRatio);
-			renderer.setSize(window.innerWidth/(1), window.innerHeight/(1));
-			var camera = new THREE.PerspectiveCamera(35,window.innerWidth / window.innerHeight, 0.1, 3000);
-			var scene = new THREE.Scene();
+			init();
 
-			var light = new THREE.AmbientLight(0xffffff, 0.5)
-			scene.add(light)
+			function init() {
+				var renderer = new THREE.WebGLRenderer({canvas: document.getElementById('earth'), antialias: true});
+				renderer.setClearColor(0x000000);
+				renderer.setPixelRatio(window.devicePixelRatio);
+				renderer.setSize(window.innerWidth/(1), window.innerHeight/(1))
+				var camera = new THREE.PerspectiveCamera(35,window.innerWidth / window.innerHeight, 0.1, 3000);
+				var scene = new THREE.Scene();
 
-			var light2 = new THREE.PointLight(0xffffff, 0.5)
-			scene.add(light2)
+				var light = new THREE.AmbientLight(0xffffff, 0.5)
+				scene.add(light)
 
-			var geometry = new THREE.SphereGeometry(100, 15, 15)
-			var material = new THREE.MeshLambertMaterial({ color: 0xff0000});
-			var mesh = new THREE.Mesh(geometry, material)
-			mesh.position.set(0,0,-500)
+				var light2 = new THREE.PointLight(0xffffff, 0.5)
+				scene.add(light2)
 
-			scene.add(mesh)
+				var geometry = new THREE.SphereGeometry(100, 20, 15)
+				var material = new THREE.MeshLambertMaterial({ color: 0xff0000, wireframe: true});
+				var mesh = new THREE.Mesh(geometry, material)
+				mesh.position.set(0,0,-500)
 
-			requestAnimationFrame(render)
+				scene.add(mesh)
 
-			// window.addEventListener( 'resize', onWindowResize, false );
+				requestAnimationFrame(render)
 
-			// function onWindowResize() {
-			// 	camera.aspect = window.innerWidth / window.innerHeight;
-			// 	camera.updateProjectionMatrix();
-			// 	renderer.setSize( window.innerWidth, window.innerHeight );
+				window.addEventListener( 'resize', onWindowResize, false );
 
-			function render() {
-				mesh.rotation.x += 0.03;
-				mesh.rotation.y += 0.01;
-				renderer.render(scene, camera)
-				requestAnimationFrame(render);
+				function render() {
+					mesh.rotation.x += 0.03;
+					mesh.rotation.y += 0.03;
+					renderer.render(scene, camera)
+					requestAnimationFrame(render);
+				}
+
+				function onWindowResize() {
+				 	camera.aspect = window.innerWidth / window.innerHeight;
+				 	camera.updateProjectionMatrix();
+				 	renderer.setSize( window.innerWidth, window.innerHeight );
+				}
 			}
 
 		</script>
