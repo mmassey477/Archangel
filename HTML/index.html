@@ -1,22 +1,22 @@
 <!DOCTYPE html>
-<html style="margin: 0px;">  
+<html style="margin: 0px;"><link href="style.css" type="text/css" rel="stylesheet"/> 
 	<head>
 		<title>Archangel</title>
 	</head>
-	<header style="color: red; position: absolute; width: 100%; font: helvetica;">
+	<header class="title">
 		<center>
-			<h1 ng-click="home()">
+			<h1 class="logo" ng-click="home()">
 				Archangel
 			</h1>
 		</center>
 	</header>
-	<div class="menu" style="width: 10%; position: absolute; color: red; float: left; border: solid; margin: 10px;" ng-click="">
+	<div class="menu"  ng-click="">
 		<center>
 			Menu
 		</center>
 	</div>
-	<body style="margin: 0px; height: 100%; width: 100%;">
-		<canvas id="earth" style="margin: 0px; display: block;"></canvas>
+	<body class="body">
+		<canvas id="earth" class="three"></canvas>
 		<script src="../ThreeJS/three.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 		<script>
