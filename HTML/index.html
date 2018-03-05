@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html style="margin: 0px;">  
+<html style="margin: 0px;"><link href="style.css" type="text/css" rel="stylesheet"/> 
 	<head>
 		<title>Archangel</title>
 	</head>
-	<header style="color: red; position: absolute; width: 100%; font: helvetica;">
+	<header class="title">
 		<center>
-			<h1 ng-click="home()">
+			<h1 class="logo" ng-click="home()">
 				Archangel
 			</h1>
 		</center>
 	</header>
-	<div class="menu" style="width: 10%; position: absolute; color: red; float: left; border: solid; margin: 10px;" ng-click="">
+	<div class="menu"  ng-click="">
 		<center>
 			Menu
 			<a href="charities.html" style=" color: red;">Charities</a>
@@ -20,6 +20,9 @@
 			</div>
 	<body style="margin: 0px; height: 100%; width: 100%;">
 		<canvas id="earth" style="margin: 0px; display: block;"></canvas>
+	</div>
+	<body class="body">
+		<canvas id="earth" class="three"></canvas>
 		<script src="../ThreeJS/three.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 		<script>
@@ -30,7 +33,8 @@
 				renderer.setClearColor(0x000000);
 				renderer.setPixelRatio(window.devicePixelRatio);
 				renderer.setSize(window.innerWidth/(1), window.innerHeight/(1))
-				var camera = new THREE.PerspectiveCamera(35,window.innerWidth / window.innerHeight, 0.1, 3000);
+				var camera = new THREE.PerspectiveCamera(45,window.innerWidth / window.innerHeight, 0.1, 3000);
+				camera.position.set( 0, 0, 300);
 				var scene = new THREE.Scene();
 
 				var light = new THREE.AmbientLight(0xffffff, 0.5)
@@ -39,20 +43,82 @@
 				var light2 = new THREE.PointLight(0xffffff, 0.5)
 				scene.add(light2)
 
-				var geometry = new THREE.SphereGeometry(100, 20, 15)
+				var geometry = new THREE.BoxGeometry(100, 100, 100)
 				var material = new THREE.MeshLambertMaterial({ color: 0xff0000, wireframe: true});
 				var mesh = new THREE.Mesh(geometry, material)
-				mesh.position.set(0,0,-500)
+				mesh.position.set(0,0,0)
 
 				scene.add(mesh)
 
 				requestAnimationFrame(render)
 
+				var radius = 300;
+				var initX = 0;
+				var initY = 0;
+				var panFinalX = 0;
+				var panFinalY = 0;
+				var x = 0
+				var y = 0
+				var z = 0
+
 				window.addEventListener( 'resize', onWindowResize, false );
+				window.addEventListener( 'wheel', zoom);
+				window.addEventListener( 'mousedown', handleMouseDown);
+
+				function zoom() {
+					console.log(radius)
+					if (event.deltaY > 0) {
+						radius = radius + 5;
+						camera.position.set( panFinalX, panFinalY, radius );
+						x = panFinalX
+						y = panFinalY
+						z = radius
+					}
+					else {
+						radius = radius - 5;
+						camera.position.set( panFinalX, panFinalY, radius );
+					}
+					camera.lookAt(scene.position)
+				}
+
+				function handleMouseDown() {
+					window.addEventListener( 'mousemove', handleMouseMove);
+					window.addEventListener( 'mouseup', handleMouseUp);
+				}
+
+				function handleMouseMove() {
+					panFinalX = event.clientX
+					panFinalY = event.clientY
+					var changeX = initX - panFinalX
+					var changeY = initY - panFinalY
+					var angleX = Math.atan((changeX / 2) / radius) 
+					var angleY = Math.atan((changeY / 2) / radius) 
+
+					var a = Math.sin(angleX)
+					var b = Math.cos(angleX)
+					var c = Math.sin(angleY)
+					var d = Math.cos(angleY)
+
+					x = radius*c*b
+					y = radius*c*a
+					z = radius*d
+
+					radius = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2))
+					camera.position.set(x, y, z)
+					camera.lookAt(scene.position)
+
+					// initX = panFinalX
+					// initY = panFinalY
+				}
+
+				function handleMouseUp() {
+					window.removeEventListener('mouseup', handleMouseUp)
+					window.removeEventListener('mousemove', handleMouseMove)
+				}
 
 				function render() {
-					mesh.rotation.x += 0.03;
-					mesh.rotation.y += 0.03;
+					//mesh.rotation.x += 0.03;
+					//mesh.rotation.y += 0.03;
 					renderer.render(scene, camera)
 					requestAnimationFrame(render);
 				}
