@@ -12,18 +12,19 @@
 	</header>
 	<div class="menu"  ng-click="">
 		<center>
-			Menu
-			<a href="charities.html" style=" color: red;">Charities</a>
+			<h3 style="padding: 2px; margin: 2px;">
+				Menu
+			</h3><br>
+			<a href="charities.html" style=" color: red;">Charities</a><br>
 			<a href="technology.html" style=" color: red;">Technology</a>
-		</center>
-		
-			</div>
+		</center>	
+	</div>
 	<body style="margin: 0px; height: 100%; width: 100%;">
 		<canvas id="earth" style="margin: 0px; display: block;"></canvas>
 	</div>
 	<body class="body">
-		<canvas id="earth" class="three"></canvas>
 		<script src="../ThreeJS/three.js"></script>
+		<script src="../ThreeJS/OrbitControls.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 		<script>
 			init();
@@ -35,6 +36,7 @@
 				renderer.setSize(window.innerWidth/(1), window.innerHeight/(1))
 				var camera = new THREE.PerspectiveCamera(45,window.innerWidth / window.innerHeight, 0.1, 3000);
 				camera.position.set( 0, 0, 300);
+				var controls = new THREE.OrbitControls(camera)
 				var scene = new THREE.Scene();
 
 				var light = new THREE.AmbientLight(0xffffff, 0.5)
@@ -43,7 +45,7 @@
 				var light2 = new THREE.PointLight(0xffffff, 0.5)
 				scene.add(light2)
 
-				var geometry = new THREE.BoxGeometry(100, 100, 100)
+				var geometry = new THREE.SphereGeometry(100, 40, 40)
 				var material = new THREE.MeshLambertMaterial({ color: 0xff0000, wireframe: true});
 				var mesh = new THREE.Mesh(geometry, material)
 				mesh.position.set(0,0,0)
@@ -60,61 +62,10 @@
 				var x = 0
 				var y = 0
 				var z = 0
+				var angleX = 0;
+				var angleY = 0;
 
 				window.addEventListener( 'resize', onWindowResize, false );
-				window.addEventListener( 'wheel', zoom);
-				window.addEventListener( 'mousedown', handleMouseDown);
-
-				function zoom() {
-					console.log(radius)
-					if (event.deltaY > 0) {
-						radius = radius + 5;
-						camera.position.set( panFinalX, panFinalY, radius );
-						x = panFinalX
-						y = panFinalY
-						z = radius
-					}
-					else {
-						radius = radius - 5;
-						camera.position.set( panFinalX, panFinalY, radius );
-					}
-					camera.lookAt(scene.position)
-				}
-
-				function handleMouseDown() {
-					window.addEventListener( 'mousemove', handleMouseMove);
-					window.addEventListener( 'mouseup', handleMouseUp);
-				}
-
-				function handleMouseMove() {
-					panFinalX = event.clientX
-					panFinalY = event.clientY
-					var changeX = initX - panFinalX
-					var changeY = initY - panFinalY
-					var angleX = Math.atan((changeX / 2) / radius) 
-					var angleY = Math.atan((changeY / 2) / radius) 
-
-					var a = Math.sin(angleX)
-					var b = Math.cos(angleX)
-					var c = Math.sin(angleY)
-					var d = Math.cos(angleY)
-
-					x = radius*c*b
-					y = radius*c*a
-					z = radius*d
-
-					radius = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2))
-					camera.position.set(x, y, z)
-					camera.lookAt(scene.position)
-
-					// initX = panFinalX
-					// initY = panFinalY
-				}
-
-				function handleMouseUp() {
-					window.removeEventListener('mouseup', handleMouseUp)
-					window.removeEventListener('mousemove', handleMouseMove)
-				}
 
 				function render() {
 					//mesh.rotation.x += 0.03;
