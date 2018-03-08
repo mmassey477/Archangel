@@ -9,3 +9,10 @@ Meeting 2:
 - We discused what management tool we are going to use and we decided on Google docs
 - We started planning all of the different sprints that we want to do and what features those will entail.
 - We began working on milestone 2
+
+Meeting 3:
+-March 8th
+-Aaron, Thomas, Mike, Kyle showed up. Mitch had work
+-Finished website design layout
+-Set meeting for following Sunday, going to do scrum meeting then
+-Working on the sprint
