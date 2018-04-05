@@ -17,7 +17,7 @@
 			</h3><br>
 			<a href="charities.html" style=" color: red;">Charities</a><br>
 			<a href="technology.html" style=" color: red;">Technology</a><br>
-			<button ng-click="cameraPosition1()">Click</button>
+			<a href="politics.html" style=" color: red;">Politics</a>
 		</center>
 	</div>
 	<body style="margin: 0px; height: 100%; width: 100%;">
@@ -65,7 +65,8 @@
 				var angleY = 0;
 
 				window.addEventListener( 'resize', onWindowResize, false );
-				
+				window.addEventListener( 'keypress', animateCamera, false );
+
 				function render() {
 					//mesh.rotation.x += 0.03;
 					//mesh.rotation.y += 0.03;
@@ -79,22 +80,35 @@
 				 	renderer.setSize( window.innerWidth, window.innerHeight );
 				}
 
-				function cameraPosition1(){
-					var finalX = -175,
-					finalY = 150,
-					finalZ = 8,
-					x = Math.abs(camera.position.x),
-					y = Math.abs(camera.position.y),
-					z = Math.abs(camera.position.z),
-					xScale = Math.abs((finalX - x) / 30), 
-					yScale = Math.abs((finalY - y) / 30), 
-					zScale = Math.abs((finalZ - z) / 30) 
-					while(x != finalX && y != finalY != z < finalZ ){
-						x = x + 2
-						y = y + 2
-						z = z + 2
-						camera.position.set(x, y, z)
-					}
+				function animateCamera() {
+					console.log(camera.position)
+					inputX = camera.position.x
+					inputY = camera.position.y
+					inputZ = camera.position.z
+					finalX = 580
+					finalY = 430
+					finalZ = 280
+					difX = (finalX - inputX)
+					difY = (finalY - inputY)
+					difZ = (finalZ - inputZ)
+					difVec = Math.sqrt(Math.pow(difX, 2) + Math.pow(difY, 2) + Math.pow(difZ, 2))
+					addX = difX / difVec
+					addY = difY / difVec
+					addZ = difZ / difVec
+					var intr = setInterval(function(){
+						inputX = inputX + addX
+						inputY = inputY + addY
+						inputZ = inputZ + addZ
+						camera.position.set(inputX, inputY, inputZ)
+						camera.lookAt(new THREE.Vector3(0,0,0));
+						if (inputX >= finalX){
+							console.log("Done")
+							clearInterval(intr);
+						}
+					}, 1);
+					camera.position.set(finalX, finalY, finalZ)
+					camera.lookAt(new THREE.Vector3(0,0,0));
+					console.log(camera.position)
 				}
 			}
 
