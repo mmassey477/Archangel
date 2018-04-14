@@ -27,3 +27,10 @@ Meeting 5:
 - Aaron, Thomas, Kyle, and Mitch showed up
 - Discussed our work for over Spring Break
 - Had a scrum meeting
+
+Meeting 6:
+-April 16
+-Aaron, Kyle, Thomas
+-Discussed testing options and talked about how to get the user information to
+populate in the database
+-Discussed what was needed to finish up the site
