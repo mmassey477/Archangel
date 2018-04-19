@@ -34,7 +34,7 @@
 				renderer.setPixelRatio(window.devicePixelRatio);
 				renderer.setSize(window.innerWidth/(1), window.innerHeight/(1))
 				var camera = new THREE.PerspectiveCamera(45,window.innerWidth / window.innerHeight, 0.1, 3000);
-				camera.position.set( 0, 0, 300);
+				camera.position.set( 0, 0, 600);
 				var controls = new THREE.OrbitControls(camera)
 				var scene = new THREE.Scene();
 
@@ -68,10 +68,18 @@
 				window.addEventListener( 'keypress', animateCamera, false );
 
 				function render() {
-					//mesh.rotation.x += 0.03;
-					//mesh.rotation.y += 0.03;
+					rotate();
 					renderer.render(scene, camera)
 					requestAnimationFrame(render);
+				}
+
+				function rotate() {
+					mesh.rotation.y += 0.003;
+				}
+
+				function stoprotate() {
+					mesh.rotation.x = 0
+					mesh.rotation.y = 0
 				}
 
 				function onWindowResize() {
