@@ -1,21 +1,41 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Node database tutorial</title>
+  <title></title>
 </head>
 <body>
-  <form class="Login">
-    <h1>Login</h1>
-    <input type="text" class="username" placeholder="username">
-    <input type="password" class="password" placeholder="password">
-    <input type="submit" value="Login">
-  </form>
-  <form class="CreateUser">
-    <h1>Create account</h1>
-    <input type="text" class="username" placeholder="username">
-    <input type="password" class="password" placeholder="password">
-    <input type="submit" value="Create">
-  </form>
+  <center>
+  <h2 style="color: red;">
+      Login to Archangel
+    </h2>
+    <form class="Login" style="color: red;">
+      <br>
+      <b>Username</b><br>
+      <input type="text" class="username" style="width: 23%; border: solid; border-color: red; margin: 5px;"><br><br>
+      <b>Password</b><br>
+      <input type="password" class="password" style="width: 23%; border-color: red; margin: 5px;"><br><br>
+      <input type="submit" value="Login">
+    </form>
+    <h2 style="color: red;">
+      Sign Up for Archangel
+    </h2>
+    <form class="CreateUser" style="color: red;">
+      <br>
+      <b>Email</b><br>
+      <input type="text" class="username" style="width: 23%; border: solid; border-color: red; margin: 5px;"><br><br>
+      <b>Password</b><br>
+      <input type="password" class="password" required="required" style="width: 23%; border-color: red; margin: 5px;"><br><br>
+      <input type="submit" value="Create">
+    </form>
+  </center>
   <script src="/app.js"></script>
 </body>
+
+<style>
+  body{
+    background-image: url("SignUporLoginPage.png");
+    background-position: 0px 30px; 
+    background-size: cover;
+  }
+</style>
 </html>
