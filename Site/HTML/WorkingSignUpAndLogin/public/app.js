@@ -4,7 +4,10 @@ CreateUser.addEventListener('submit', (e) => {
   const username = CreateUser.querySelector('.username').value
   const password = CreateUser.querySelector('.password').value
   post('/createUser', { username, password })
+  alert('Sign Up success!')
+  next()
 })
+
 const Login = document.querySelector('.Login')
 Login.addEventListener('submit', (e) => {
   e.preventDefault()
@@ -31,5 +34,5 @@ function post (path, data) {
 }
 
 function next (){
-  window.location = "http://localhost:7555/home_page.html";
+  window.location = "http://localhost:7555/main.html";
 }
