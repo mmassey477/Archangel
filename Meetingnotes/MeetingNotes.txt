@@ -34,3 +34,18 @@ Meeting 6:
 -Discussed testing options and talked about how to get the user information to
 populate in the database
 -Discussed what was needed to finish up the site
+
+Meeting 7:
+-April 19
+-Aaron, Kyle, Mitch
+-Discussed areas in which we were going to test
+-Discussed what the end goal of the project was and where we stand in relation to that goal
+-Set meeting for Saturday, April 21 at 4pm
+
+Meeting 8:
+-April 21st
+-Thomas, Aaron, Mitch, Kyle
+-Discussed the various testing aspects.
+-Decided to test the viewpoints on the globe, the database functionality with login,
+and that the html links are working.
+-Also talked about working the realtime webpage
