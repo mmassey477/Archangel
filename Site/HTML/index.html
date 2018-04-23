@@ -16,7 +16,8 @@
 				Menu
 			</h3><br>
 			<a href="charities.html" style=" color: red;">Charities</a><br>
-			<a href="technology.html" style=" color: red;">Technology</a>
+			<a href="technology.html" style=" color: red;">Technology</a><br>
+			<a href="politics.html" style=" color: red;">Politics</a>
 		</center>
 	</div>
 	<body style="margin: 0px; height: 100%; width: 100%;">
@@ -33,7 +34,7 @@
 				renderer.setPixelRatio(window.devicePixelRatio);
 				renderer.setSize(window.innerWidth/(1), window.innerHeight/(1))
 				var camera = new THREE.PerspectiveCamera(45,window.innerWidth / window.innerHeight, 0.1, 3000);
-				camera.position.set( 0, 0, 300);
+				camera.position.set( 0, 0, 600);
 				var controls = new THREE.OrbitControls(camera)
 				var scene = new THREE.Scene();
 
@@ -43,11 +44,11 @@
 				var light2 = new THREE.PointLight(0xffffff, 0.5)
 				scene.add(light2)
 				
-				var geometry = new THREE.SphereGeometry(100, 40, 40)
-				var material = new THREE.MeshLambertMaterial({ color: 0xff0000, wireframe: true});
-				var mesh = new THREE.Mesh(geometry, material)
+				var texture = new THREE.TextureLoader().load( 'texture.jpg');
+				var geometry = new THREE.SphereGeometry( 200, 20, 20 );
+				var material = new THREE.MeshLambertMaterial( { map: texture, overdraw: 0.5 } );
+				var mesh = new THREE.Mesh( geometry, material );
 				mesh.position.set(0,0,0)
-
 				scene.add(mesh)
 
 				requestAnimationFrame(render)
@@ -64,18 +65,58 @@
 				var angleY = 0;
 
 				window.addEventListener( 'resize', onWindowResize, false );
+				window.addEventListener( 'keypress', animateCamera, false );
 
 				function render() {
-					//mesh.rotation.x += 0.03;
-					//mesh.rotation.y += 0.03;
+					rotate();
 					renderer.render(scene, camera)
 					requestAnimationFrame(render);
+				}
+
+				function rotate() {
+					mesh.rotation.y += 0.003;
+				}
+
+				function stoprotate() {
+					mesh.rotation.x = 0
+					mesh.rotation.y = 0
 				}
 
 				function onWindowResize() {
 				 	camera.aspect = window.innerWidth / window.innerHeight;
 				 	camera.updateProjectionMatrix();
 				 	renderer.setSize( window.innerWidth, window.innerHeight );
+				}
+
+				function animateCamera() {
+					console.log(camera.position)
+					inputX = camera.position.x
+					inputY = camera.position.y
+					inputZ = camera.position.z
+					finalX = 580
+					finalY = 430
+					finalZ = 280
+					difX = (finalX - inputX)
+					difY = (finalY - inputY)
+					difZ = (finalZ - inputZ)
+					difVec = Math.sqrt(Math.pow(difX, 2) + Math.pow(difY, 2) + Math.pow(difZ, 2))
+					addX = difX / difVec
+					addY = difY / difVec
+					addZ = difZ / difVec
+					var intr = setInterval(function(){
+						inputX = inputX + addX
+						inputY = inputY + addY
+						inputZ = inputZ + addZ
+						camera.position.set(inputX, inputY, inputZ)
+						camera.lookAt(new THREE.Vector3(0,0,0));
+						if (inputX >= finalX){
+							console.log("Done")
+							clearInterval(intr);
+						}
+					}, 1);
+					camera.position.set(finalX, finalY, finalZ)
+					camera.lookAt(new THREE.Vector3(0,0,0));
+					console.log(camera.position)
 				}
 			}
 
