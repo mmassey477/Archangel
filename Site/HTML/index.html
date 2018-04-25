@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html style="margin: 0px;"><link href="style.css" type="text/css" rel="stylesheet"/> 
 	<head>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.6.1/jasmine.min.css">
 		<title>Archangel</title>
 	</head>
 	<header class="title">
@@ -15,9 +16,14 @@
 			<h3 style="padding: 2px; margin: 2px;">
 				Menu
 			</h3><br>
-			<a href="charities.html" style=" color: red;">Charities</a><br>
-			<a href="technology.html" style=" color: red;">Technology</a><br>
-			<a href="politics.html" style=" color: red;">Politics</a>
+			<a href="charities.html" style=" color: white;">Charities</a><br>
+			<a href="technology.html" style=" color: white;">Technology</a><br>
+			<a href="politics.html" style=" color: white;">Politics</a><br><br>
+			<input id="northAmerica" type="button" value="North America" onclick="northAmerica()"><br><br>
+			<input id="southAmerica" type="button" value="South America" onclick="southAmerica()"><br><br>
+			<input id="africa" type="button" value="Africa" onclick="africa()"><br><br>
+			<input id="asia" type="button" value="Asia" onclick="asia()"><br><br>
+			<input id="europe" type="button" value="Europe" onclick="europe()"><br><br>
 		</center>
 	</div>
 	<body style="margin: 0px; height: 100%; width: 100%;">
@@ -25,101 +31,9 @@
 		<script src="../ThreeJS/three.js"></script>
 		<script src="../ThreeJS/OrbitControls.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-		<script>
-			init();
-
-			function init() {
-				var renderer = new THREE.WebGLRenderer({canvas: document.getElementById('earth'), antialias: true});
-				renderer.setClearColor(0x000000);
-				renderer.setPixelRatio(window.devicePixelRatio);
-				renderer.setSize(window.innerWidth/(1), window.innerHeight/(1))
-				var camera = new THREE.PerspectiveCamera(45,window.innerWidth / window.innerHeight, 0.1, 3000);
-				camera.position.set( 0, 0, 600);
-				var controls = new THREE.OrbitControls(camera)
-				var scene = new THREE.Scene();
-
-				var light = new THREE.AmbientLight(0xffffff, 0.5)
-				scene.add(light)
-
-				var light2 = new THREE.PointLight(0xffffff, 0.5)
-				scene.add(light2)
-				
-				var texture = new THREE.TextureLoader().load( 'texture.jpg');
-				var geometry = new THREE.SphereGeometry( 200, 20, 20 );
-				var material = new THREE.MeshLambertMaterial( { map: texture, overdraw: 0.5 } );
-				var mesh = new THREE.Mesh( geometry, material );
-				mesh.position.set(0,0,0)
-				scene.add(mesh)
-
-				requestAnimationFrame(render)
-
-				var radius = 300;
-				var initX = 0;
-				var initY = 0;
-				var panFinalX = 0;
-				var panFinalY = 0;
-				var x = 0
-				var y = 0
-				var z = 0
-				var angleX = 0;
-				var angleY = 0;
-
-				window.addEventListener( 'resize', onWindowResize, false );
-				window.addEventListener( 'keypress', animateCamera, false );
-
-				function render() {
-					rotate();
-					renderer.render(scene, camera)
-					requestAnimationFrame(render);
-				}
-
-				function rotate() {
-					mesh.rotation.y += 0.003;
-				}
-
-				function stoprotate() {
-					mesh.rotation.x = 0
-					mesh.rotation.y = 0
-				}
-
-				function onWindowResize() {
-				 	camera.aspect = window.innerWidth / window.innerHeight;
-				 	camera.updateProjectionMatrix();
-				 	renderer.setSize( window.innerWidth, window.innerHeight );
-				}
-
-				function animateCamera() {
-					console.log(camera.position)
-					inputX = camera.position.x
-					inputY = camera.position.y
-					inputZ = camera.position.z
-					finalX = 580
-					finalY = 430
-					finalZ = 280
-					difX = (finalX - inputX)
-					difY = (finalY - inputY)
-					difZ = (finalZ - inputZ)
-					difVec = Math.sqrt(Math.pow(difX, 2) + Math.pow(difY, 2) + Math.pow(difZ, 2))
-					addX = difX / difVec
-					addY = difY / difVec
-					addZ = difZ / difVec
-					var intr = setInterval(function(){
-						inputX = inputX + addX
-						inputY = inputY + addY
-						inputZ = inputZ + addZ
-						camera.position.set(inputX, inputY, inputZ)
-						camera.lookAt(new THREE.Vector3(0,0,0));
-						if (inputX >= finalX){
-							console.log("Done")
-							clearInterval(intr);
-						}
-					}, 1);
-					camera.position.set(finalX, finalY, finalZ)
-					camera.lookAt(new THREE.Vector3(0,0,0));
-					console.log(camera.position)
-				}
-			}
-
-		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.6.1/jasmine.min.js"></script>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.6.1/jasmine-html.min.js"></script>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.6.1/boot.min.js"></script>
+		<script src="globe.js"></script>
 	</body>
 </html>

@@ -4,30 +4,14 @@
 }
 
 .logo {
-	color: red;
-	width: 10%;
-}
-
-.logo:hover {
-	color: black; 
-	background-color: red; 
+	color: white;
 	width: 10%;
 }
 
 .menu {
 	width: 10%; 
 	position: absolute; 
-	color: red; 
-	float: left; 
-	border: solid; 
-	margin: 10px;
-}
-
-.menu:hover {
-	width: 10%; 
-	position: absolute; 
-	color: black;
-	background-color: red; 
+	color: white; 
 	float: left; 
 	border: solid; 
 	margin: 10px;
