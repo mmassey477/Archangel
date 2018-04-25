@@ -60,6 +60,7 @@ body{
 .cr {
 	color: red;
 	position: fixed;
+	top: 20px;
 	bottom: 10px;
 	left: 46%;
 	font-size: 20px;
