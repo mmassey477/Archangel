@@ -22,6 +22,7 @@ Login.addEventListener('submit', (e) => {
       else alert('login failed')
     })
 })
+
 function post (path, data) {
   return window.fetch(path, {
     method: 'POST',
