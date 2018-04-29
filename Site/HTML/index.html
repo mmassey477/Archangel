@@ -10,27 +10,47 @@
 				Archangel
 			</h1>
 		</center>
+		<div class="dropdown">
+			<img class="ham" id="dropdown" src="hamburger-white.svg" onclick="dropdown()">
+			<div id="myDropdown" class="dropdown-content">
+		    	<a href="http://localhost:8080/Site/HTML/index.html">Home</a>
+		    	<a href="http://localhost:8080/Site/HTML/home_page.html">Sign Out</a>
+		 	</div>
+		</div>
 	</header>
-	<div class="menu"  ng-click="">
+	<div class="menu">
 		<center>
-			<h3 style="padding: 2px; margin: 2px;">
+			<h2 style="padding: 2px; margin: 2px;">
 				Menu
-			</h3><br>
+			</h2><br>
 			<a href="charities.html" style=" color: white;">Charities</a><br>
 			<a href="technology.html" style=" color: white;">Technology</a><br>
 			<a href="politics.html" style=" color: white;">Politics</a><br><br>
-			<input id="northAmerica" type="button" value="North America" onclick="northAmerica()"><br><br>
-			<input id="southAmerica" type="button" value="South America" onclick="southAmerica()"><br><br>
-			<input id="africa" type="button" value="Africa" onclick="africa()"><br><br>
-			<input id="asia" type="button" value="Asia" onclick="asia()"><br><br>
-			<input id="europe" type="button" value="Europe" onclick="europe()"><br><br>
+			<input class="button" id="northAmerica" type="button" value="North America" onclick="northAmerica()"><br><br>
+			<input class="button" id="southAmerica" type="button" value="South America" onclick="southAmerica()"><br><br>
+			<input class="button" id="africa" type="button" value="Africa" onclick="africa()"><br><br>
+			<input class="button" id="asia" type="button" value="Asia" onclick="asia()"><br><br>
+			<input class="button" id="europe" type="button" value="Europe" onclick="europe()"><br><br>
+			<input class="button" id="rotate" type="button" value="Rotate" onclick="rotate()"><br><br>
 		</center>
 	</div>
 	<body style="margin: 0px; height: 100%; width: 100%;">
+		<div id="na" class="popup">
+			<div style="padding: px; padding-top: 0px;">North America Air Quality</div><br>
+			<div>
+				Los Angeles:
+				<h4 id="city"></h4>
+				<br>New York:
+				<br>Boulder:
+				<br>Miami:
+				<br>Chicago: 
+			</div>
+		</div>
 		<canvas id="earth" style="margin: 0px; display: block;"></canvas>
 		<script src="../ThreeJS/three.js"></script>
 		<script src="../ThreeJS/OrbitControls.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+		<script src="jquery-2.2.0.js"></script>
 	<!-- 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.6.1/jasmine.min.js"></script>
     	<script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.6.1/jasmine-html.min.js"></script>
     	<script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.6.1/boot.min.js"></script> -->
