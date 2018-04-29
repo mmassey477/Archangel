@@ -52,20 +52,26 @@ function init() {
 	document.getElementById("africa").onclick = africa;
 	document.getElementById("asia").onclick = asia;
 	document.getElementById("europe").onclick = europe;
+	document.getElementById("dropdown").onclick = dropdown;
+	document.getElementById("rotate").onclick = rotate;
 
 	function render() {
-		rotate();
+		checkRotate();
 		renderer.render(scene, camera)
 		requestAnimationFrame(render);
 	}
 
-	function rotate() {
+	function checkRotate() {
 		if(rotation == true){
 			mesh.rotation.y += 0.001;
 		}
 		else{
 			mesh.rotation.y = 0
 		}
+	}
+
+	function rotate() {
+		rotation = true;
 	}
 
 	function stoprotate() {
@@ -101,6 +107,14 @@ function init() {
 	}
 
 	function northAmerica() {
+		const lat = '40.0150'
+		const long = '-105.2705'
+		northA()
+		popup('na')
+	}
+
+	function northA() {
+		var a = document.getElementById("na").classList
 		stoprotate()
 		inputX = Math.round(camera.position.x)
 		inputY = Math.round(camera.position.y)
@@ -140,7 +154,7 @@ function init() {
 			camera.position.set(x, y, z)
 			camera.lookAt(new THREE.Vector3(0,0,0));
 		}
-		console.log("Test")
+		
 	}
 
 	function southAmerica() {
@@ -158,14 +172,11 @@ function init() {
 		xscale = diffx / Math.abs(diffx)
 		yscale = diffy / Math.abs(diffy)
 		zscale = diffz / Math.abs(diffz)
-		//console.log(xscale, yscale, zscale)
 		x = inputX
 		y = inputY
 		z = inputZ
 		var zoomFastsa = window.setInterval(zoomZoomsa, 1)
 		function zoomZoomsa() {
-			a += 1
-			//console.log(a)
 			if (diffx == 0 && diffy == 0 && diffz == 0) {
 				window.clearInterval(zoomFastsa)
 				return
@@ -319,7 +330,49 @@ function init() {
 			camera.position.set(x, y, z)
 			camera.lookAt(new THREE.Vector3(0,0,0));
 		}
-		//camera.position.set(finalX, finalY, finalZ)
-		console.log("test")
 	}
+
+	function dropdown() {
+		document.getElementById("myDropdown").classList.toggle("show");
+	}
+
+	window.onmousedown = function(event) {
+	  if (!event.target.matches('.ham')) {
+
+	    var dropdowns = document.getElementsByClassName("dropdown-content");
+	    var i;
+	    for (i = 0; i < dropdowns.length; i++) {
+	      var openDropdown = dropdowns[i];
+	      if (openDropdown.classList.contains('show')) {
+	        openDropdown.classList.remove('show');
+	      }
+	    }
+	  }
+
+	  if (!event.target.matches('.popup') && !event.target.matches('#northAmerica')) {
+	  	console.log("test")
+	    var popup = document.getElementById("na");
+	      if (popup.style.display == 'block') {
+	      	popup.style.display = 'none'
+	      }
+	  }
+	}
+}
+
+function popup(id) {
+	var x = document.getElementById(id);
+	x.style.display = "none";
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+
+function getAir(lat, long) {
+	var url = 'https://api.breezometer.com/baqi/?lat=' + lat + '&lon=' + long + '&key=3d92ee43a9a840268c1a9f8b7c32864a'
+	$.ajax({url: url}).then(function(data) {
+		console.log(data)
+			$('#city').text(data.breezometer_aqi)
+		})
 }
