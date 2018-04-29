@@ -107,9 +107,14 @@ function init() {
 	}
 
 	function northAmerica() {
-		getAir(lat, long)
+		const lat = '40.0150'
+		const long = '-105.2705'
+		northA()
+		popup('na')
+	}
+
+	function northA() {
 		var a = document.getElementById("na").classList
-		console.log(a)
 		stoprotate()
 		inputX = Math.round(camera.position.x)
 		inputY = Math.round(camera.position.y)
@@ -331,7 +336,7 @@ function init() {
 		document.getElementById("myDropdown").classList.toggle("show");
 	}
 
-	window.onclick = function(event) {
+	window.onmousedown = function(event) {
 	  if (!event.target.matches('.ham')) {
 
 	    var dropdowns = document.getElementsByClassName("dropdown-content");
@@ -343,13 +348,31 @@ function init() {
 	      }
 	    }
 	  }
+
+	  if (!event.target.matches('.popup') && !event.target.matches('#northAmerica')) {
+	  	console.log("test")
+	    var popup = document.getElementById("na");
+	      if (popup.style.display == 'block') {
+	      	popup.style.display = 'none'
+	      }
+	  }
 	}
 }
 
+function popup(id) {
+	var x = document.getElementById(id);
+	x.style.display = "none";
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
 
 function getAir(lat, long) {
-	var url = 'https://api.breezometer.com/baqi/?lat=' + lat + '&lon=' + long '&key=3d92ee43a9a840268c1a9f8b7c32864a'
+	var url = 'https://api.breezometer.com/baqi/?lat=' + lat + '&lon=' + long + '&key=3d92ee43a9a840268c1a9f8b7c32864a'
 	$.ajax({url: url}).then(function(data) {
+		console.log(data)
 			$('#city').text(data.breezometer_aqi)
 		})
 }
