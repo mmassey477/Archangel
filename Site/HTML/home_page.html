@@ -12,29 +12,33 @@
 </head>
 	<body>
 		<div class="container">
-			<h1>Archangel</h1>
+			<center>
+			<h1 class="logo" ng-click="home()">
+				Archangel
+			</h1>
+		</center>
 
 			<div class="row">
 				<div class="col-12 text-center"> 
-	    			<button id="singlebutton" name="singlebutton" class="btn btn-primary">Sign Up</button> 
+	    			<a href="/LoginAndSignUp/public/index.html"><button id="singlebutton" name="singlebutton" class="btn btn-primary">Sign Up</button>
 				</div>
 			</div>
 
 			<div class="row">
 				<div class="col-2 text-center col-centered">
-					OR
+					<a href="#">OR</a>
 				</div>
 			</div>
+
 			<div class="row">
 				<div class="col-12 text-center"> 
-	    			<button id="singlebutton" name="singlebutton" class="btn btn-primary">Login</button> 
+	    			<a href="/LoginAndSignUp/public/login.html"><button id="singlebutton" name="singlebutton" class="btn btn-primary">Login</button> 
 				</div>
 			</div>
 		</div>
 		<style>
 		h1{
 			text-align: center;
-			text-decoration: underline;
 			text-shadow: 1px 1px 1px;
 		}
 		body{
@@ -60,6 +64,7 @@
 		.checkbox-inline{
 			margin-right: 15px;
 		}
+
 	</style>
 
 
