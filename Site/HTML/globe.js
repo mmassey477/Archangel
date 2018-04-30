@@ -20,7 +20,7 @@ function init() {
 	scene.add(sun)
 	
 	var texture = new THREE.TextureLoader().load( 'lowerhighres.jpg');
-	var geometry = new THREE.SphereGeometry( 200, 50, 50 );
+	var geometry = new THREE.SphereGeometry( 200, 200, 200 );
 	var material = new THREE.MeshLambertMaterial( { map: texture, overdraw: 0.5 } );
 	var mesh = new THREE.Mesh( geometry, material );
 	mesh.position.set(0,0,0)
