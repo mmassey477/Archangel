@@ -1,68 +1,26 @@
 <!DOCTYPE html>
-<html style="margin: 0px;"><link href="style.css" type="text/css" rel="stylesheet"/> 
-	<head>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.6.1/jasmine.min.css">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-		<title>Archangel</title>
-	</head>
-	<header class="title">
-		<center>
-			<h1 class="logo">
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+	<title>Home Page</title>
+</head>
+	<body>
+		<div class="container">
+			<center>
+			<h1 class="logo" ng-click="home()">
 				Archangel
 			</h1>
 		</center>
-		<div class="dropdown">
-			<img class="ham" id="dropdown" src="hamburger-white.svg" onclick="dropdown()">
-			<div id="myDropdown" class="dropdown-content">
-		    	<a href="index.html">Home</a>
-		    	<a href="home_page.html">Sign Out</a>
-		 	</div>
-		</div>
-	</header>
-	<div class="menu">
-		<center>
-			<h2 style="padding: 2px; margin: 2px;">
-				Menu
-			</h2><br>
-			<a href="charities.html" style=" color: white;">Charities</a><br>
-			<a href="technology.html" style=" color: white;">Technology</a><br>
-			<a href="politics.html" style=" color: white;">Politics</a><br>
-			<a href="aboutus.html" style=" color: white;">About us</a><br><br>
-			<input class="button" id="northAmerica" type="button" value="North America" onclick="northAmerica()"><br><br>
-			<input class="button" id="southAmerica" type="button" value="South America" onclick="southAmerica()"><br><br>
-			<input class="button" id="africa" type="button" value="Africa" onclick="africa()"><br><br>
-			<input class="button" id="asia" type="button" value="Asia" onclick="asia()"><br><br>
-			<input class="button" id="europe" type="button" value="Europe" onclick="europe()"><br><br>
-			<input class="button" id="rotate" type="button" value="Rotate" onclick="rotate()"><br><br>
-		</center>
-	</div>
-	<body style="margin: 0px; height: 100%; width: 100%; overflow: hidden;">
-		<div id="na" class="popup">
-			<div style="padding: px; padding-top: 0px;">North America Air Quality</div><br>
-			<div>
-				Los Angeles:
-				<h4 id="city"></h4>
-				<br>New York:
-				<br>Boulder:
-				<br>Miami:
-				<br>Chicago: 
-			</div>
-		</div>
-		<canvas id="earth" style="margin: 0px; display: block;"></canvas>
-		<script src="../ThreeJS/three.js"></script>
-		<script src="../ThreeJS/OrbitControls.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-		<script src="jquery-2.2.0.js"></script>
-	<!-- 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.6.1/jasmine.min.js"></script>
-    	<script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.6.1/jasmine-html.min.js"></script>
-    	<script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.6.1/boot.min.js"></script> -->
-		<script src="globe.js"></script>
-	</body>
-=======
 
 			<div class="row">
 				<div class="col-12 text-center"> 
-	    			<a href="LoginAndSignUp/public/index.html"><button id="singlebutton" name="singlebutton" class="btn btn-primary">Sign Up</button>
+	    			<a href="index2.html"><button id="singlebutton" name="singlebutton" class="btn btn-primary">Sign Up</button></a>
 				</div>
 			</div>
 
@@ -74,7 +32,7 @@
 
 			<div class="row">
 				<div class="col-12 text-center"> 
-	    			<a href="LoginAndSignUp/login.html"><button id="singlebutton" name="singlebutton" class="btn btn-primary">Login</button> 
+	    			<a href="index2.html"><button id="singlebutton" name="singlebutton" class="btn btn-primary">Login</button></a>
 				</div>
 			</div>
 		</div>
@@ -114,5 +72,4 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   </body>
->>>>>>> Database
 </html>
