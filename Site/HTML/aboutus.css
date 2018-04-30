@@ -53,13 +53,15 @@ body{
 	color: black;
 	font-size: 40px;
 	text-align: center;
-	padding-top: 170px;
+	padding-top: 150px;
 	overflow: hidden;
 }
 
 .cr {
 	color: red;
-	position: bottom;
+	position: absolute;
+	bottom: 0px;
+	left: 47%;
 	padding-bottom: 20px;
 	overflow: hidden;
 }
