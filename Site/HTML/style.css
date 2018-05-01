@@ -89,7 +89,7 @@
 
 .popup {
 	width: 20%;
-	height: 35%;
+	height: 40%;
 	border: solid;
 	border-color: white;
 	background-color: gray;
@@ -97,6 +97,7 @@
 	position: absolute;
 	right: 7em;
 	top: 20em;
+	padding: 10px;
 }
 
 #na {

@@ -109,11 +109,7 @@ function init() {
 	function northAmerica() {
 		const lat = '40.0150'
 		const long = '-105.2705'
-		northA()
-		popup('na')
-	}
-
-	function northA() {
+		getAir(lat, long)
 		var a = document.getElementById("na").classList
 		stoprotate()
 		inputX = Math.round(camera.position.x)
@@ -137,6 +133,9 @@ function init() {
 		function zoomZoomna() {
 			if (diffx == 0 && diffy == 0 && diffz == 0) {
 				window.clearInterval(zoomFastna)
+				window.setTimeout(function () {
+					popup('North America')
+				}, 500)
 				return
 			}
 			if (diffx != 0) {
@@ -158,6 +157,9 @@ function init() {
 	}
 
 	function southAmerica() {
+		const lat = '-22.9068'
+		const long = '-43.1729'
+		getAir(lat, long)
 		stoprotate()
 		inputX = Math.round(camera.position.x)
 		inputY = Math.round(camera.position.y)
@@ -179,6 +181,9 @@ function init() {
 		function zoomZoomsa() {
 			if (diffx == 0 && diffy == 0 && diffz == 0) {
 				window.clearInterval(zoomFastsa)
+				window.setTimeout(function () {
+					popup('South America')
+				}, 500)
 				return
 			}
 			if (diffx != 0) {
@@ -199,6 +204,9 @@ function init() {
 	}
 
 	function africa() {
+		const lat = '-33.9249'
+		const long = '18.4241'
+		getAir(lat, long)
 		stoprotate()
 		inputX = Math.round(camera.position.x)
 		inputY = Math.round(camera.position.y)
@@ -221,6 +229,9 @@ function init() {
 		function zoomZooma() {
 			if (diffx == 0 && diffy == 0 && diffz == 0) {
 				window.clearInterval(zoomFasta)
+				window.setTimeout(function () {
+					popup('Africa')
+				}, 500)
 				return
 			}
 			if (diffx != 0) {
@@ -241,6 +252,9 @@ function init() {
 	}
 
 	function asia() {
+		const lat = '39.9042'
+		const long = '116.4074'
+		getAir(lat, long)
 		stoprotate()
 		inputX = Math.round(camera.position.x)
 		inputY = Math.round(camera.position.y)
@@ -263,6 +277,9 @@ function init() {
 		function zoomZoomas() {
 			if (diffx == 0 && diffy == 0 && diffz == 0) {
 				window.clearInterval(zoomFastas)
+				window.setTimeout(function () {
+					popup('Asia')
+				}, 500)
 				return
 			}
 			if (diffx != 0) {
@@ -291,6 +308,9 @@ function init() {
 	}
 
   	function europe() {
+  		const lat = '46.8182'
+		const long = '8.2275'
+		getAir(lat, long)
 		stoprotate()
 		inputX = Math.round(camera.position.x)
 		inputY = Math.round(camera.position.y)
@@ -313,6 +333,9 @@ function init() {
 		function zoomZoome() {
 			if (diffx == 0 && diffy == 0 && diffz == 0) {
 				window.clearInterval(zoomFaste)
+				window.setTimeout(function () {
+					popup('Europe')
+				}, 500)
 				return
 			}
 			if (diffx != 0) {
@@ -350,7 +373,6 @@ function init() {
 	  }
 
 	  if (!event.target.matches('.popup') && !event.target.matches('#northAmerica')) {
-	  	console.log("test")
 	    var popup = document.getElementById("na");
 	      if (popup.style.display == 'block') {
 	      	popup.style.display = 'none'
@@ -359,7 +381,8 @@ function init() {
 	}
 }
 
-function popup(id) {
+function popup(cont) {
+	var id = 'na'
 	var x = document.getElementById(id);
 	x.style.display = "none";
     if (x.style.display === "none") {
@@ -367,12 +390,15 @@ function popup(id) {
     } else {
         x.style.display = "none";
     }
+    $('#cont').text(cont)
 }
 
 function getAir(lat, long) {
 	var url = 'https://api.breezometer.com/baqi/?lat=' + lat + '&lon=' + long + '&key=3d92ee43a9a840268c1a9f8b7c32864a'
 	$.ajax({url: url}).then(function(data) {
 		console.log(data)
-			$('#city').text(data.breezometer_aqi)
+			$('#score').text(data.breezometer_aqi)
+			$('#quality').text(data.breezometer_description)
+			$('#info').text(data.dominant_pollutant_text.causes + ' ' + data.dominant_pollutant_text.effects + ' ' + data.dominant_pollutant_text.main)
 		})
 }
