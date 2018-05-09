@@ -4,7 +4,7 @@ Software Development class project
 <h3> Overview </h3>
 Archangel is a website to provide a single resource about pollution. It gathers information from many other sources on different types of pollution and how you can contribute to the various causes. It is meant to spread awareness on the different factors that cause pollution and links to the charities and technologies that are helping to remedy the problem.  It also helps spread awareness on the different political factors that are influencing our planet. When the user accesses the home page they will be able to utilize the globe and select different points on the planet to see real time pollution information.
 <br><br>
-Description of how to deploy and run the app: <br>
+<h3>Description of how to deploy and run the app:</h3>
 Make sure node is installed and npm dependencies are not changed <br>
 Pull master branch from Github <br>
 Create database in MySQL with name ‘archangel’ <br>
