@@ -54,11 +54,17 @@ function init() {
 	document.getElementById("europe").onclick = europe;
 	document.getElementById("dropdown").onclick = dropdown;
 	document.getElementById("rotate").onclick = rotate;
+	document.getElementById("home").onclick = gohome;
+	document.getElementById("signout").onclick = gosignout;
 
 	function render() {
 		checkRotate();
 		renderer.render(scene, camera)
 		requestAnimationFrame(render);
+	}
+
+	function gohome() {
+		console.log("test")
 	}
 
 	function checkRotate() {
